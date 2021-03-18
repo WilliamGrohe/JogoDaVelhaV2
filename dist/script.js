@@ -9,12 +9,12 @@ class JogoVelha{
     }
 
     iniciaElementos(){
-        this.velha = document.querySelector('#id');
-        this.velha.addEventListener('click', this.realizaJogada);
+        this.velha = document.querySelector('#velha');
+        this.velha.addEventListener('click', this.realizaJogada.bind(this));
     }
 
-    realizaJogada(){
-
+    realizaJogada(event){
+        event.target.innerHTML = 'X';
     }
-    
+
 }
