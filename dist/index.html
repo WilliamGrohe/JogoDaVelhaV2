@@ -1,13 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Jogo da velha</title>
 </head>
 <body>
-    
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed">
+        <a class="navbar-brand" href="#">Jogo da Velha</a>
+      
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Jogador X">
+            <input class="form-control mr-sm-2" type="text" placeholder="Jogador O">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Salvar</button>
+          </form>
+        </div>
+      </nav>
+
+      <div class="velha">
+          <div class="coluna">
+              <span data-id="0" class="quadro">X</span>
+              <span data-id="1" class="quadro">X</span>
+              <span data-id="2" class="quadro">O</span>
+          </div>
+
+          <div class="coluna">
+            <span data-id="3" class="quadro"></span>
+            <span data-id="4" class="quadro">O</span>
+            <span data-id="5" class="quadro"></span>
+        </div>
+
+        <div class="coluna">
+            <span data-id="6" class="quadro">X</span>
+            <span data-id="7" class="quadro"></span>
+            <span data-id="8" class="quadro"></span>
+        </div>
+      </div>
 </body>
 
 </html>
