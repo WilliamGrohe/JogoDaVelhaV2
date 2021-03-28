@@ -15,6 +15,8 @@ class JogoVelha{
     }
 
     iniciaElementos(){
+        this.jogadorX = document.querySelector('#jogador-x');
+        this.jogadorO = document.querySelector('#jogador-o');
 
         this.salvarLocal = document.querySelector('#salva-local');
         this.salvarLocal.addEventListener('click', this.salvaLocal.bind(this));
@@ -31,9 +33,7 @@ class JogoVelha{
     }
 
     salvaLocal(){
-        this.jogadorX = document.querySelector('#jogador-x');
-        this.jogadorO = document.querySelector('#jogador-o');
-
+        
         const dados = {
             jogadorX: this.jogadorX.value,
             jogadorO: this.jogadorO.value,
@@ -44,6 +44,13 @@ class JogoVelha{
     }
 
     carregaLocal(){
+        const dados = JSON.parse(localStorage.getItem('jogo'));
+
+        this.jogadorX.value = dados.jogadorX;
+        this.jogadorO.value = dados.jogadorO;
+        this.jogadas = dados.jogadas;
+        
+        this.render();
 
     }
 
