@@ -148,7 +148,14 @@ class JogoVelha{
         
         modais.appendChild(modal);
 
-        modais.setTim
+        setTimeout(() => {
+            modal.classList.add("removerAnimacao");
+
+            setTimeout(()=>{
+                modais.removeChild(modal);
+            }, 1000)
+            
+        }, 2000);
     }
     
 }

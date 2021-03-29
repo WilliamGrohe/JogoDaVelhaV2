@@ -64,4 +64,30 @@ span{
     padding: 20px;
     display: block;
     margin-bottom: 10px;
+    border-radius: 10px;
+    animation-name: aparecer;
+    animation-duration: 0.5s;
+}
+
+.removerAnimacao{
+    animation: desaparecer .5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes aparecer {
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes desaparecer{
+    50% {
+        transform: translateX(10%);
+    }
+    100% {
+        transform: translateX(-200%);
+    }
 }
