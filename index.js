@@ -25,6 +25,13 @@ server.listen(8080, function(){
     console.log("%s listening at %s", server.name, server.url);
 });
 
+server.get('/all', function(req, res, next){
+    knex('velha')
+    .then(dados => {
+        res.send(dados);
+    }, next);
+});
+
 server.post('/save', function(req, res, next){
     knex('velha')
     .insert(req.body)
@@ -32,7 +39,6 @@ server.post('/save', function(req, res, next){
         return res.send(dados);
     }, next);
 });
-
 
 server.get('/*.*',restify.plugins.serveStatic({
     directory: './dist',
