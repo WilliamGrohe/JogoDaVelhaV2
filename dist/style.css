@@ -44,3 +44,24 @@ body{
 .velha .quadro:last-child{
     border: none;
 }
+
+span{
+    user-select: none;
+    margin: 0;
+}
+
+#modais{
+    position: absolute;
+    margin: 130px auto;
+    margin-top: 200px;
+    font-family: inherit;
+    z-index: 3;
+}
+
+.modalClass{
+    background: wheat;
+    width: 200px;
+    padding: 20px;
+    display: block;
+    margin-bottom: 10px;
+}

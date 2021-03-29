@@ -12,6 +12,8 @@ class JogoVelha{
     iniciaEstado(){
         this.turno = true;
         this.jogadas = [0,0,0,0,0,0,0,0,0];
+        this.fim = false;
+        this.vitoria = [448, 56, 7, 292, 146, 73, 273, 84];
     }
 
     iniciaElementos(){
@@ -72,13 +74,36 @@ class JogoVelha{
 
         const id = event.target.dataset.id;
 
-        //event.target.innerHTML = this.turno ? 'X' : 'O';
+        if(this.fim){
+            this.modal('jogo finalizado');
+            return;
+        }
+
+        //verifica se a jogada e valida
+        if(this.jogadas[id] != 0){
+            this.modal('Essa posição já foi escolhida!');
+            return;
+        }
+
+        //verifica se clicou local correto
+        if(!event.target.dataset.id){
+            this.modal('Você precisa clicar em uma casa válida');
+        }
+
         this.jogadas[id] = this.turno ? 'X': 'O';
 
         this.turno = !this.turno;
     }
 
+
     render(){
+
+        const resultado = this.verificaVitoria();
+
+        if(resultado == 'X' || resultado == 'O'){
+            this.fim = true;
+            this.modal(`O jogador ${resultado} venceu!`);
+        }
 
         //iterar nos elementos do tabuleiro
         const velhaElemento = document.querySelectorAll('[data-id]');
@@ -86,6 +111,44 @@ class JogoVelha{
         for (let i = 0; i < 9; i++) {
             velhaElemento[i].innerHTML = this.jogadas[i] == 0 ? "" : this.jogadas[i];    
         }
+    }
+
+    verificaVitoria(){
+        //decimal da sequencia jogador X
+        const valorX = parseInt(
+            this.jogadas.map(value => value == 'X' ? 1 : 0).join(''), 
+            2
+        );
+
+        //decimal da sequencia jogador O
+        const valorO = parseInt(
+            this.jogadas.map(value => value == 'O' ? 1 : 0).join(''), 
+            2
+        );
+
+        //percorre array vitoria perguntando se contem
+        for(const element of this.vitoria){
+            if((element & valorX) == element){
+                return 'X';
+            }
+            if((element & valorO) == element){
+                return 'O';
+            }
+        }
+
+        return "";
+    }
+
+    modal(texto){
+        const modais = document.querySelector('#modais');
+        const modal = document.createElement("div");
+
+        modal.innerHTML = texto;
+        modal.classList.add("modalClass");
+        
+        modais.appendChild(modal);
+
+        modais.setTim
     }
     
 }
