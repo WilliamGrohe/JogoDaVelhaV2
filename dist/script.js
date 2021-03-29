@@ -177,9 +177,8 @@ class JogoVelha{
                 jogadorX, jogadorO, jogadas: JSON.stringify(this.jogadas),
                 img: dataUrl
             })
-            
 
-        }).then((response) => {
+        }).then((response) =>{
             this.modal('Envio com sucesso!');
         })
         .catch((error) => {
