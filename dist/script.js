@@ -29,6 +29,8 @@ class JogoVelha{
         this.limparLocal = document.querySelector('#limpa-local');
         this.limparLocal.addEventListener('click', this.limpaLocal.bind(this));
 
+        this.salvar = document.querySelector('#salvar');
+        this.salvar.addEventListener('click', this.enviarServidor.bind(this));
 
         this.velha = document.querySelector('#velha');
         this.velha.addEventListener('click', (event) => {
@@ -102,7 +104,10 @@ class JogoVelha{
 
         if(resultado == 'X' || resultado == 'O'){
             this.fim = true;
+            this.salvar.style.display = "block";
             this.modal(`O jogador ${resultado} venceu!`);
+        }else{
+            this.salvar.style.display = "none";
         }
 
         //iterar nos elementos do tabuleiro
@@ -156,6 +161,32 @@ class JogoVelha{
             }, 1000)
             
         }, 2000);
+    }
+
+    enviarServidor(){
+        //receber nomes dos usuarios
+        const jogadorX = this.jogadorX.value;
+        const jogadorO = this.jogadorO.value;
+        
+        //criar a imagem do tabuleiro
+        domtoimage.toPng(this.velha, {width: '400', height: '400'})
+        .then((dataUrl) => {
+
+            //repassa dados para o servidor
+            return axios.post('/save', {
+                jogadorX, jogadorO, jogadas: JSON.stringify(this.jogadas),
+                img: dataUrl
+            })
+            
+
+        }).then((response) => {
+            this.modal('Envio com sucesso!');
+        })
+        .catch((error) => {
+            this.modal('oops, something went wrong!', error);
+        });
+
+            
     }
     
 }
